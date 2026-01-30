@@ -1,0 +1,343 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fswiss\fcharset0 Helvetica-Oblique;
+}
+{\colortbl;\red255\green255\blue255;\red24\green24\blue24;\red52\green55\blue54;\red236\green241\blue247;
+\red109\green109\blue109;\red228\green234\blue244;}
+{\*\expandedcolortbl;;\cssrgb\c12157\c12157\c12157;\cssrgb\c26667\c27843\c27451;\cssrgb\c94118\c95686\c97647;
+\cssrgb\c50196\c50196\c50196;\cssrgb\c91373\c93333\c96471;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid301\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid302\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid401\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid402\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid5}
+{\list\listtemplateid6\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid501\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid6}
+{\list\listtemplateid7\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid601\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid7}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}{\listoverride\listid6\listoverridecount0\ls6}{\listoverride\listid7\listoverridecount0\ls7}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Here is the definitive 
+\f1\b Structural Tech Stack
+\f0\b0  for MyFitBuddy.\
+This architecture is designed for 
+\f1\b robustness, safety, and rapid Java-based development
+\f0\b0 . It unifies the "Best of Both Worlds" discussions we have had (Spring AI + Strong Type Safety + Relational Data).\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b\fs28 \cf2 1. High-Level System Architecture\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f0\b0\fs24 \cf2 This diagram illustrates how data flows from the user to the AI and back, passing through your critical "Safety Layer."\
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \strokec3 Code snippet\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs48 \cf3 \
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf3 \cb4 graph TD\
+    %% Client Layer\
+    subgraph "Client Layer (Frontend)"\
+        Browser[Angular PWA (Mobile/Web)]\
+        State[Signal Store / RxJS]\
+    end\
+\
+    %% Security & API Layer\
+    Browser -->|HTTPS / JSON| API_GW[Nginx / Load Balancer]\
+    API_GW -->|REST API| Security[Spring Security (JWT Filter)]\
+\
+    %% Application Core\
+    subgraph "Backend Core (Spring Boot 3.2+)"\
+        Controller[REST Controllers]\
+        Service[Service Layer (Business Logic)]\
+        \
+        %% The Brains\
+        subgraph "Intelligence Engine"\
+            RuleEngine[Safety Rule Engine (Java Strategy Pattern)]\
+            PromptMgr[Spring AI Prompt Template]\
+            AIClient[Spring AI ChatClient]\
+        end\
+    end\
+\
+    %% Data Layer\
+    subgraph "Data Persistence"\
+        Postgres[(PostgreSQL)]\
+        VectorDB[(PGVector Extension)]\
+        Redis[(Redis Cache)]\
+    end\
+\
+    %% External AI\
+    AIClient -->|API Call| LLM[OpenAI / Anthropic API]\
+\
+    %% Connections\
+    Security --> Controller\
+    Controller --> Service\
+    Service --> RuleEngine\
+    Service --> Redis\
+    RuleEngine -->|Validates| PromptMgr\
+    PromptMgr --> AIClient\
+    AIClient -->|Raw Response| RuleEngine\
+    RuleEngine -->|Safe Response| Service\
+    Service --> Postgres\
+    Service -->|RAG Search| VectorDB\
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf5 \cb1 \strokec5 \
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b\fs28 \cf2 \strokec2 2. Detailed Component Stack\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\fs24 \cf2 A. Client Layer (The User Experience)\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Framework:
+\f0\b0  
+\f1\b Angular 17+
+\f0\b0  (Using Standalone Components - no \cf3 \cb6 \strokec3 NgModules\cf2 \cb1 \strokec2 ).\
+\ls1\ilvl0
+\f1\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Styling:
+\f0\b0  
+\f1\b Tailwind CSS
+\f0\b0  (Utility-first for fast UI iteration).\
+\ls1\ilvl0
+\f1\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 State Management:
+\f0\b0  
+\f1\b Angular Signals
+\f0\b0  (Simpler and more performant than NgRx for this scale).\
+\ls1\ilvl0
+\f1\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Offline/Mobile:
+\f0\b0  
+\f1\b @angular/pwa
+\f0\b0  (Service Workers for offline workout logging).\
+\ls1\ilvl0
+\f1\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Charts:
+\f0\b0  
+\f1\b Ngx-Charts
+\f0\b0  or 
+\f1\b ECharts
+\f0\b0  (Visualizing progress/volume load).\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b \cf2 B. API & Security Layer ( The Gatekeeper)\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls2\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Gateway:
+\f0\b0  
+\f1\b Nginx
+\f0\b0  (Reverse Proxy & SSL Termination).\
+\ls2\ilvl0
+\f1\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Authentication:
+\f0\b0  
+\f1\b Spring Security 6.0
+\f0\b0  with 
+\f1\b OAuth2 Resource Server
+\f0\b0  (JWT Handling).\
+\ls2\ilvl0
+\f1\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Validation:
+\f0\b0  
+\f1\b Hibernate Validator
+\f0\b0  (Strict \cf3 \cb6 \strokec3 @NotNull\cf2 \cb1 \strokec2 , \cf3 \cb6 \strokec3 @Min\cf2 \cb1 \strokec2 , \cf3 \cb6 \strokec3 @Max\cf2 \cb1 \strokec2  on all inputs).\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b \cf2 C. Backend Application Layer (The Logic)\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls3\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Framework:
+\f0\b0  
+\f1\b Java 21 + Spring Boot 3.2
+\f0\b0 .\
+\ls3\ilvl0
+\f1\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 API Documentation:
+\f0\b0  
+\f1\b SpringDoc OpenAPI
+\f0\b0  (Swagger UI) - Automatic API docs for frontend integration.\
+\ls3\ilvl0
+\f1\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Object Mapping:
+\f0\b0  
+\f1\b MapStruct
+\f0\b0  (Zero-overhead mapping between Database Entities and API DTOs).\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b \cf2 D. Intelligence & Safety Layer (The "Secret Sauce")\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls4\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 AI Integration:
+\f0\b0  
+\f1\b Spring AI
+\f0\b0 .\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sa160\partightenfactor0
+\ls4\ilvl1
+\f2\i \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u9702 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Role:
+\f0\i0  Abstracts the LLM provider. Allows switching from GPT-4 to Claude 3 via config only.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls4\ilvl0
+\f1\b \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Safety Engine:
+\f0\b0  
+\f1\b Core Java (Chain of Responsibility Pattern)
+\f0\b0 .\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sa160\partightenfactor0
+\ls4\ilvl1
+\f2\i \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u9702 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Role:
+\f0\i0  A deterministic logic pipeline that runs 
+\f2\i after
+\f0\i0  the AI generates a plan but 
+\f2\i before
+\f0\i0  saving it.\
+\ls4\ilvl1
+\f2\i \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u9702 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Logic:
+\f0\i0  \cf3 \cb6 \strokec3 List<SafetyRule> rules\cf2 \cb1 \strokec2 . Examples: \cf3 \cb6 \strokec3 InjuryConstraintRule\cf2 \cb1 \strokec2 , \cf3 \cb6 \strokec3 VolumeCapRule\cf2 \cb1 \strokec2 .\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls4\ilvl0
+\f1\b \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Prompt Engineering:
+\f0\b0  
+\f1\b Spring AI \cf3 \cb6 \strokec3 PromptTemplate
+\f0\b0 \cf2 \cb1 \strokec2 .\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sa160\partightenfactor0
+\ls4\ilvl1
+\f2\i \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u9702 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Role:
+\f0\i0  Manages strict JSON output schemas to prevent the AI from "yapping."\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b \cf2 E. Data Persistence Layer (The Memory)\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls5\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Primary DB:
+\f0\b0  
+\f1\b PostgreSQL 16
+\f0\b0 .\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sa160\partightenfactor0
+\ls5\ilvl1
+\f2\i \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u9702 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Role:
+\f0\i0  Stores Users, Plans, Logs, and structured Constraints.\
+\ls5\ilvl1
+\f2\i \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u9702 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Key Feature:
+\f0\i0  
+\f1\b \cf3 \cb6 \strokec3 jsonb\cf2 \cb1 \strokec2  columns
+\f0\b0  for storing flexible workout structures while keeping the rest relational.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls5\ilvl0
+\f1\b \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Vector Search:
+\f0\b0  
+\f1\b pgvector
+\f0\b0  (PostgreSQL Extension).\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sa160\partightenfactor0
+\ls5\ilvl1
+\f2\i \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u9702 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Role:
+\f0\i0  Stores embeddings of exercise descriptions/instructions for "Chat with Coach" RAG (Retrieval-Augmented Generation).\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls5\ilvl0
+\f1\b \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Caching:
+\f0\b0  
+\f1\b Redis
+\f0\b0 .\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sa160\partightenfactor0
+\ls5\ilvl1
+\f2\i \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u9702 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Role:
+\f0\i0  Caches active session data and Rate Limiting (preventing API cost spikes).\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b \cf2 F. DevOps & Infrastructure (The Engine Room)\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls6\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Containerization:
+\f0\b0  
+\f1\b Docker
+\f0\b0  (Multi-stage builds for minimal Java image size).\
+\ls6\ilvl0
+\f1\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 CI/CD:
+\f0\b0  
+\f1\b GitHub Actions
+\f0\b0  (Build -> Test -> Deploy).\
+\ls6\ilvl0
+\f1\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Hosting:
+\f0\b0  
+\f1\b Railway
+\f0\b0  or 
+\f1\b Render
+\f0\b0  (Simplest for Spring+Postgres deployment).\
+\pard\pardeftab720\partightenfactor0
+\cf5 \strokec5 \
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b\fs28 \cf2 \strokec2 3. Structural Folder Organization (Spring Boot)\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f0\b0\fs24 \cf2 To keep the "Safety" logic separate from standard CRUD, structure your backend package like this:\
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \strokec3 Plaintext\cb1 \
+\pard\pardeftab720\qc\partightenfactor0
+
+\fs48 \cf3 \
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf3 \cb4 com.myfitbuddy.backend\
+\uc0\u9500 \u9472 \u9472  config              # Security, CORS, Swagger Config\
+\uc0\u9500 \u9472 \u9472  core                # Shared logic (Exceptions, Base Entities)\
+\uc0\u9500 \u9472 \u9472  modules\
+\uc0\u9474    \u9500 \u9472 \u9472  auth            # Login, Registration, JWT\
+\uc0\u9474    \u9500 \u9472 \u9472  user            # User Profile, Biometrics\
+\uc0\u9474    \u9500 \u9472 \u9472  workout         # Plans, Logs, Exercises\
+\uc0\u9474    \u9492 \u9472 \u9472  coaching        # Chatbot logic\
+\uc0\u9492 \u9472 \u9472  intelligence        # THE AI BRAIN\
+    \uc0\u9500 \u9472 \u9472  client          # Spring AI Wrapper\
+    \uc0\u9500 \u9472 \u9472  prompts         # Prompt Templates (stubs)\
+    \uc0\u9500 \u9472 \u9472  rag             # Vector Store Services\
+    \uc0\u9492 \u9472 \u9472  safety          # THE RULE ENGINE\
+        \uc0\u9500 \u9472 \u9472  rules       # Individual Logic (e.g., BackInjuryRule.java)\
+        \uc0\u9492 \u9472 \u9472  validator   # Service that runs the rules\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b \cf2 \cb1 \strokec2 4. Why this structure works for YOU?\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls7\ilvl0
+\fs24 \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Isolation:
+\f0\b0  The \cf3 \cb6 \strokec3 intelligence\cf2 \cb1 \strokec2  package is isolated. If AI fails, the rest of the app (logging, history) still works.\
+\ls7\ilvl0
+\f1\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Strictness:
+\f0\b0  The \cf3 \cb6 \strokec3 RuleEngine\cf2 \cb1 \strokec2  sits explicitly between the AI and the Database. Bad data literally cannot be saved.\
+\ls7\ilvl0
+\f1\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Speed:
+\f0\b0  You are writing standard Java 21 code for 90% of the app. You don't need to learn Python/LangChain.\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b \cf2 Next Step:
+\f0\b0 \
+Would you like the 
+\f1\b Database Schema (SQL)
+\f0\b0  or the 
+\f1\b Java Class Structure for the Safety Rule Engine
+\f0\b0 ?\
+}
