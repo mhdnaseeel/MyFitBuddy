@@ -1,0 +1,18 @@
+
+> frontend@0.0.0 start
+> ng serve
+
+- Building...
+
+Initial chunk files | Names         |  Raw size
+polyfills.js        | polyfills     |  88.09 kB | 
+main.js             | main          |  66.25 kB | 
+styles.css          | styles        |  16.57 kB | 
+
+                    | Initial total | 170.90 kB
+
+Application bundle generation complete. [1.045 seconds]
+
+Watch mode enabled. Watching for file changes...
+  ➜  Local:   http://localhost:4200/
+  ➜  press h + enter to show help

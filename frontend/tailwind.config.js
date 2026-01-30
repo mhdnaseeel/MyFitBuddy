@@ -6,16 +6,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#FFFFFF', // Pure White
-        secondary: '#F2F4F7', // Light Gray
-        action: '#4238B7', // Electric Purple
+        primary: '#7C3AED', // Electric Purple (Core Brand)
+        secondary: '#C084FC', // Light Purple (Accents)
+        dark: '#1F2937', // Dark Gray (Text)
+        light: '#F3F4F6', // Light Gray (Backgrounds)
         success: '#10B981', // Emerald Green
-        warning: '#EF4444', // Crimson Red
-        functional: '#BCC3DA', // Blue-Gray
+        warning: '#EF4444', // Red
       },
       fontFamily: {
-        sans: ['Inter', 'Montserrat', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Roboto Mono', 'monospace'],
+        sans: ['Inter', 'sans-serif'],
+      },
+      container: {
+        center: true,
+        padding: '1rem',
       },
     },
   },

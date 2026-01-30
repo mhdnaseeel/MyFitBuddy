@@ -1,3 +1,24 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply font-sans bg-gray-50 text-gray-900 antialiased;
+    }
+
+    h1 {
+        @apply text-4xl font-bold tracking-tight text-gray-900;
+    }
+
+    h2 {
+        @apply text-2xl font-semibold tracking-tight text-gray-900;
+    }
+
+    h3 {
+        @apply text-xl font-medium text-gray-900;
+    }
+}
