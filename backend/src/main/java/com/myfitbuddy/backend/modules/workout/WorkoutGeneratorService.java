@@ -8,14 +8,10 @@ import com.myfitbuddy.backend.modules.user.FitnessProfileRepository;
 import com.myfitbuddy.backend.modules.user.User;
 import com.myfitbuddy.backend.modules.user.UserRepository;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 @Service
 public class WorkoutGeneratorService {

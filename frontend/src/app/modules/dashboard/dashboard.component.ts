@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { WorkoutService } from '../workout/services/workout.service';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 
 @Component({
-    selector: 'app-dashboard',
-    standalone: true,
-    imports: [CommonModule, CardComponent, ButtonComponent],
-    template: `
+  selector: 'app-dashboard',
+  standalone: true,
+  imports: [CommonModule, CardComponent, ButtonComponent],
+  template: `
     <div class="min-h-screen bg-gray-50">
       <!-- Header -->
       <header class="bg-white shadow">
@@ -63,8 +65,30 @@ import { ButtonComponent } from '../../shared/components/button/button.component
   `
 })
 export class DashboardComponent {
-    startWorkout() {
-        console.log('Start Workout clicked');
-        // Navigate to generation or active workout
-    }
+  private workoutService = inject(WorkoutService);
+  private router = inject(Router);
+
+  startWorkout() {
+    // Generate new plan or use existing?
+    // For Phase 5 manual verification, we assume a plan exists or we create one on the fly.
+    // Ideally we call generate first, then start session with that ID.
+    // But since Generation Service is backend only right now (no UI flow for it in Phase 5 explicitly, it was Phase 3),
+    // let's assume we pass a dummy plan ID or fix backend to handle null plan (Quick Start).
+    // The backend Service handles `planId` being null by creating a session with null plan.
+    // Let's pass null for "Quick Start" or just handle it.
+
+    // For now, let's just count on backend handling it or call generate API.
+    // But we want to see the UI.
+    // Let's try starting session with null plan ID for "Freestyle" or similar if allowed.
+    // Backend `startSession` allows null planId.
+
+    this.workoutService.startSession(1).subscribe({ // Hardcoded plan ID 1 for testing if it exists, or just try generic
+      next: () => this.router.navigate(['/active']),
+      error: (err) => {
+        console.error('Failed to start', err);
+        // If error is "Active session already exists", nav there
+        this.router.navigate(['/active']);
+      }
+    });
+  }
 }

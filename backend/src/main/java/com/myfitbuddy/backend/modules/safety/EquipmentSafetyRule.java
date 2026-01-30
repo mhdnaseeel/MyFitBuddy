@@ -4,8 +4,6 @@ import com.myfitbuddy.backend.modules.user.FitnessProfile;
 import com.myfitbuddy.backend.modules.workout.WorkoutPlan;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class EquipmentSafetyRule implements SafetyRule {
 
