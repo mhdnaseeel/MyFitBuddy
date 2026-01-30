@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Local dev scripts and logs
+backend.log
+verify_ai.sh
+verify_auth.sh
