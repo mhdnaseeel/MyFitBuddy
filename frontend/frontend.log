@@ -1,18 +1,125 @@
 
 > frontend@0.0.0 start
-> ng serve
+> ng serve --host 0.0.0.0
 
+
+Warning: This is a simple server for use in testing or debugging Angular applications
+locally. It hasn't been reviewed for security issues.
+
+Binding this server to an open connection can result in compromising your application or
+computer. Using a different host than the one passed to the "--host" flag might result in
+websocket connection issues. You might need to use "--disable-host-check" if that's the
+case.
+    
 - Building...
 
-Initial chunk files | Names         |  Raw size
-polyfills.js        | polyfills     |  88.09 kB | 
-main.js             | main          |  66.25 kB | 
-styles.css          | styles        |  16.57 kB | 
+Application bundle generation failed. [1.118 seconds]
 
-                    | Initial total | 170.90 kB
+✘ [ERROR] TS2552: Cannot find name 'WorkoutService'. Did you mean 'MockWorkoutService'? [plugin angular-compiler]
 
-Application bundle generation complete. [1.045 seconds]
+    src/app/modules/workout/services/mock-workout.service.ts:9:40:
+      9 │ export class MockWorkoutService extends WorkoutService {
+        ╵                                         ~~~~~~~~~~~~~~
+
+
+✘ [ERROR] TS4112: This member cannot have an 'override' modifier because its containing class 'MockWorkoutService' does not extend another class. [plugin angular-compiler]
+
+    src/app/modules/workout/services/mock-workout.service.ts:18:13:
+      18 │     override startSession(planId: number): Observable<WorkoutSessi...
+         ╵              ~~~~~~~~~~~~
+
+
+✘ [ERROR] TS2551: Property 'activeSession' does not exist on type 'MockWorkoutService'. Did you mean 'getActiveSession'? [plugin angular-compiler]
+
+    src/app/modules/workout/services/mock-workout.service.ts:37:26:
+      37 │             tap(s => this.activeSession.set(s))
+         ╵                           ~~~~~~~~~~~~~
+
+  'getActiveSession' is declared here.
+
+    src/app/modules/workout/services/mock-workout.service.ts:41:13:
+      41 │     override getActiveSession(): Observable<WorkoutSession> {
+         ╵              ~~~~~~~~~~~~~~~~
+
+
+✘ [ERROR] TS4112: This member cannot have an 'override' modifier because its containing class 'MockWorkoutService' does not extend another class. [plugin angular-compiler]
+
+    src/app/modules/workout/services/mock-workout.service.ts:41:13:
+      41 │     override getActiveSession(): Observable<WorkoutSession> {
+         ╵              ~~~~~~~~~~~~~~~~
+
+
+✘ [ERROR] TS2551: Property 'activeSession' does not exist on type 'MockWorkoutService'. Did you mean 'getActiveSession'? [plugin angular-compiler]
+
+    src/app/modules/workout/services/mock-workout.service.ts:42:18:
+      42 │         if (!this.activeSession()) return of(null as any).pipe(del...
+         ╵                   ~~~~~~~~~~~~~
+
+  'getActiveSession' is declared here.
+
+    src/app/modules/workout/services/mock-workout.service.ts:41:13:
+      41 │     override getActiveSession(): Observable<WorkoutSession> {
+         ╵              ~~~~~~~~~~~~~~~~
+
+
+✘ [ERROR] TS2551: Property 'activeSession' does not exist on type 'MockWorkoutService'. Did you mean 'getActiveSession'? [plugin angular-compiler]
+
+    src/app/modules/workout/services/mock-workout.service.ts:43:23:
+      43 │         return of(this.activeSession()!).pipe(delay(200));
+         ╵                        ~~~~~~~~~~~~~
+
+  'getActiveSession' is declared here.
+
+    src/app/modules/workout/services/mock-workout.service.ts:41:13:
+      41 │     override getActiveSession(): Observable<WorkoutSession> {
+         ╵              ~~~~~~~~~~~~~~~~
+
+
+✘ [ERROR] TS4112: This member cannot have an 'override' modifier because its containing class 'MockWorkoutService' does not extend another class. [plugin angular-compiler]
+
+    src/app/modules/workout/services/mock-workout.service.ts:46:13:
+      46 │     override logSet(sessionId: number, data: any): Observable<SetL...
+         ╵              ~~~~~~
+
+
+✘ [ERROR] TS2551: Property 'activeSession' does not exist on type 'MockWorkoutService'. Did you mean 'getActiveSession'? [plugin angular-compiler]
+
+    src/app/modules/workout/services/mock-workout.service.ts:54:13:
+      54 │         this.activeSession.update(s => s ? ({ ...s, sets: [...s.se...
+         ╵              ~~~~~~~~~~~~~
+
+  'getActiveSession' is declared here.
+
+    src/app/modules/workout/services/mock-workout.service.ts:41:13:
+      41 │     override getActiveSession(): Observable<WorkoutSession> {
+         ╵              ~~~~~~~~~~~~~~~~
+
+
+✘ [ERROR] TS7006: Parameter 's' implicitly has an 'any' type. [plugin angular-compiler]
+
+    src/app/modules/workout/services/mock-workout.service.ts:54:34:
+      54 │         this.activeSession.update(s => s ? ({ ...s, sets: [...s.se...
+         ╵                                   ^
+
+
+✘ [ERROR] TS4112: This member cannot have an 'override' modifier because its containing class 'MockWorkoutService' does not extend another class. [plugin angular-compiler]
+
+    src/app/modules/workout/services/mock-workout.service.ts:58:13:
+      58 │     override finishSession(sessionId: number): Observable<WorkoutS...
+         ╵              ~~~~~~~~~~~~~
+
+
+✘ [ERROR] TS2551: Property 'activeSession' does not exist on type 'MockWorkoutService'. Did you mean 'getActiveSession'? [plugin angular-compiler]
+
+    src/app/modules/workout/services/mock-workout.service.ts:59:13:
+      59 │         this.activeSession.set(null);
+         ╵              ~~~~~~~~~~~~~
+
+  'getActiveSession' is declared here.
+
+    src/app/modules/workout/services/mock-workout.service.ts:41:13:
+      41 │     override getActiveSession(): Observable<WorkoutSession> {
+         ╵              ~~~~~~~~~~~~~~~~
+
 
 Watch mode enabled. Watching for file changes...
-  ➜  Local:   http://localhost:4200/
-  ➜  press h + enter to show help

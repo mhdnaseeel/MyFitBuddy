@@ -2,16 +2,17 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { WorkoutService, WorkoutSession, SetLog } from '../../services/workout.service';
+// import { MockWorkoutService } from '../../services/mock-workout.service';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { CardComponent } from '../../../../shared/components/card/card.component';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-active-workout',
-    standalone: true,
-    imports: [CommonModule, ButtonComponent, CardComponent, InputComponent, FormsModule],
-    template: `
+  selector: 'app-active-workout',
+  standalone: true,
+  imports: [CommonModule, ButtonComponent, CardComponent, InputComponent, FormsModule],
+  template: `
     <div class="min-h-screen bg-gray-50 pb-20" *ngIf="session(); else loading">
       <!-- Sticky Header -->
       <header class="bg-white shadow sticky top-0 z-10 px-4 py-4 flex justify-between items-center">
@@ -99,83 +100,83 @@ import { FormsModule } from '@angular/forms';
   `
 })
 export class ActiveWorkoutComponent implements OnInit {
-    service = inject(WorkoutService);
-    router = inject(Router);
-    session = this.service.activeSession;
+  service = inject(WorkoutService);
+  router = inject(Router);
+  session = this.service.activeSession;
 
-    expandedExercise: number | null = 0;
-    startTime: number = Date.now();
-    timerDisplay = signal('00:00');
+  expandedExercise: number | null = 0;
+  startTime: number = Date.now();
+  timerDisplay = signal('00:00');
 
-    // Temporary storage for inputs: "ExerciseName-SetNum-type": value
-    inputs: Record<string, any> = {};
+  // Temporary storage for inputs: "ExerciseName-SetNum-type": value
+  inputs: Record<string, any> = {};
 
-    ngOnInit() {
-        this.service.getActiveSession().subscribe({
-            next: (s) => {
-                if (!s) { this.router.navigate(['/dashboard']); }
-                else {
-                    this.startTime = new Date(s.startTime).getTime();
-                    this.startTimer();
-                    this.initializeInputs(s);
-                }
-            },
-            error: () => this.router.navigate(['/dashboard'])
-        });
-    }
-
-    startTimer() {
-        setInterval(() => {
-            const diff = Math.floor((Date.now() - this.startTime) / 1000);
-            const mins = Math.floor(diff / 60).toString().padStart(2, '0');
-            const secs = (diff % 60).toString().padStart(2, '0');
-            this.timerDisplay.set(`${mins}:${secs}`);
-        }, 1000);
-    }
-
-    getExercises() {
-        return this.session()?.workoutPlan?.plan?.exercises || [];
-    }
-
-    toggleExercise(index: number) {
-        this.expandedExercise = this.expandedExercise === index ? null : index;
-    }
-
-    getSetRange(count: number) {
-        return Array.from({ length: count }, (_, i) => i + 1);
-    }
-
-    initializeInputs(session: WorkoutSession) {
-        // Pre-fill inputs from completed sets
-        session.sets.forEach(set => {
-            this.inputs[`${set.exerciseName}-${set.setNumber}-weight`] = set.weight;
-            this.inputs[`${set.exerciseName}-${set.setNumber}-reps`] = set.reps;
-        });
-    }
-
-    isSetCompleted(name: string, num: number) {
-        return this.session()?.sets.some(s => s.exerciseName === name && s.setNumber === num);
-    }
-
-    logSet(name: string, num: number) {
-        const weight = this.inputs[`${name}-${num}-weight`];
-        const reps = this.inputs[`${name}-${num}-reps`];
-
-        if (!weight || !reps) return; // Simple validation
-
-        this.service.logSet(this.session()!.id, {
-            exerciseName: name,
-            setNumber: num,
-            weight: Number(weight),
-            reps: Number(reps)
-        }).subscribe();
-    }
-
-    finish() {
-        if (confirm('Finish this workout?')) {
-            this.service.finishSession(this.session()!.id).subscribe(() => {
-                this.router.navigate(['/dashboard']);
-            });
+  ngOnInit() {
+    this.service.getActiveSession().subscribe({
+      next: (s) => {
+        if (!s) { this.router.navigate(['/dashboard']); }
+        else {
+          this.startTime = new Date(s.startTime).getTime();
+          this.startTimer();
+          this.initializeInputs(s);
         }
+      },
+      error: () => this.router.navigate(['/dashboard'])
+    });
+  }
+
+  startTimer() {
+    setInterval(() => {
+      const diff = Math.floor((Date.now() - this.startTime) / 1000);
+      const mins = Math.floor(diff / 60).toString().padStart(2, '0');
+      const secs = (diff % 60).toString().padStart(2, '0');
+      this.timerDisplay.set(`${mins}:${secs}`);
+    }, 1000);
+  }
+
+  getExercises() {
+    return this.session()?.workoutPlan?.plan?.exercises || [];
+  }
+
+  toggleExercise(index: number) {
+    this.expandedExercise = this.expandedExercise === index ? null : index;
+  }
+
+  getSetRange(count: number) {
+    return Array.from({ length: count }, (_, i) => i + 1);
+  }
+
+  initializeInputs(session: WorkoutSession) {
+    // Pre-fill inputs from completed sets
+    session.sets.forEach(set => {
+      this.inputs[`${set.exerciseName}-${set.setNumber}-weight`] = set.weight;
+      this.inputs[`${set.exerciseName}-${set.setNumber}-reps`] = set.reps;
+    });
+  }
+
+  isSetCompleted(name: string, num: number) {
+    return this.session()?.sets.some(s => s.exerciseName === name && s.setNumber === num);
+  }
+
+  logSet(name: string, num: number) {
+    const weight = this.inputs[`${name}-${num}-weight`];
+    const reps = this.inputs[`${name}-${num}-reps`];
+
+    if (!weight || !reps) return; // Simple validation
+
+    this.service.logSet(this.session()!.id, {
+      exerciseName: name,
+      setNumber: num,
+      weight: Number(weight),
+      reps: Number(reps)
+    }).subscribe();
+  }
+
+  finish() {
+    if (confirm('Finish this workout?')) {
+      this.service.finishSession(this.session()!.id).subscribe(() => {
+        this.router.navigate(['/dashboard']);
+      });
     }
+  }
 }
