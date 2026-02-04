@@ -1,0 +1,118 @@
+Here is the definitive Structural Tech Stack for MyFitBuddy.
+This architecture is designed for robustness, safety, and rapid Java-based development. It unifies the "Best of Both Worlds" discussions we have had (Spring AI + Strong Type Safety + Relational Data).
+1. High-Level System Architecture
+This diagram illustrates how data flows from the user to the AI and back, passing through your critical "Safety Layer."
+Code snippet
+
+
+
+
+graph TD
+    %% Client Layer
+    subgraph "Client Layer (Frontend)"
+        Browser[Angular PWA (Mobile/Web)]
+        State[Signal Store / RxJS]
+    end
+
+    %% Security & API Layer
+    Browser -->|HTTPS / JSON| API_GW[Nginx / Load Balancer]
+    API_GW -->|REST API| Security[Spring Security (JWT Filter)]
+
+    %% Application Core
+    subgraph "Backend Core (Spring Boot 3.2+)"
+        Controller[REST Controllers]
+        Service[Service Layer (Business Logic)]
+        
+        %% The Brains
+        subgraph "Intelligence Engine"
+            RuleEngine[Safety Rule Engine (Java Strategy Pattern)]
+            PromptMgr[Spring AI Prompt Template]
+            AIClient[Spring AI ChatClient]
+        end
+    end
+
+    %% Data Layer
+    subgraph "Data Persistence"
+        Postgres[(PostgreSQL)]
+        VectorDB[(PGVector Extension)]
+        Redis[(Redis Cache)]
+    end
+
+    %% External AI
+    AIClient -->|API Call| LLM[OpenAI / Anthropic API]
+
+    %% Connections
+    Security --> Controller
+    Controller --> Service
+    Service --> RuleEngine
+    Service --> Redis
+    RuleEngine -->|Validates| PromptMgr
+    PromptMgr --> AIClient
+    AIClient -->|Raw Response| RuleEngine
+    RuleEngine -->|Safe Response| Service
+    Service --> Postgres
+    Service -->|RAG Search| VectorDB
+
+2. Detailed Component Stack
+A. Client Layer (The User Experience)
+	•	Framework: Angular 17+ (Using Standalone Components - no NgModules).
+	•	Styling: Tailwind CSS (Utility-first for fast UI iteration).
+	•	State Management: Angular Signals (Simpler and more performant than NgRx for this scale).
+	•	Offline/Mobile: @angular/pwa (Service Workers for offline workout logging).
+	•	Charts: Ngx-Charts or ECharts (Visualizing progress/volume load).
+B. API & Security Layer ( The Gatekeeper)
+	•	Gateway: Nginx (Reverse Proxy & SSL Termination).
+	•	Authentication: Spring Security 6.0 with OAuth2 Resource Server (JWT Handling).
+	•	Validation: Hibernate Validator (Strict @NotNull, @Min, @Max on all inputs).
+C. Backend Application Layer (The Logic)
+	•	Framework: Java 21 + Spring Boot 3.2.
+	•	API Documentation: SpringDoc OpenAPI (Swagger UI) - Automatic API docs for frontend integration.
+	•	Object Mapping: MapStruct (Zero-overhead mapping between Database Entities and API DTOs).
+D. Intelligence & Safety Layer (The "Secret Sauce")
+	•	AI Integration: Spring AI.
+	◦	Role: Abstracts the LLM provider. Allows switching from GPT-4 to Claude 3 via config only.
+	•	Safety Engine: Core Java (Chain of Responsibility Pattern).
+	◦	Role: A deterministic logic pipeline that runs after the AI generates a plan but before saving it.
+	◦	Logic: List<SafetyRule> rules. Examples: InjuryConstraintRule, VolumeCapRule.
+	•	Prompt Engineering: Spring AI PromptTemplate.
+	◦	Role: Manages strict JSON output schemas to prevent the AI from "yapping."
+E. Data Persistence Layer (The Memory)
+	•	Primary DB: PostgreSQL 16.
+	◦	Role: Stores Users, Plans, Logs, and structured Constraints.
+	◦	Key Feature: jsonb columns for storing flexible workout structures while keeping the rest relational.
+	•	Vector Search: pgvector (PostgreSQL Extension).
+	◦	Role: Stores embeddings of exercise descriptions/instructions for "Chat with Coach" RAG (Retrieval-Augmented Generation).
+	•	Caching: Redis.
+	◦	Role: Caches active session data and Rate Limiting (preventing API cost spikes).
+F. DevOps & Infrastructure (The Engine Room)
+	•	Containerization: Docker (Multi-stage builds for minimal Java image size).
+	•	CI/CD: GitHub Actions (Build -> Test -> Deploy).
+	•	Hosting: Railway or Render (Simplest for Spring+Postgres deployment).
+
+3. Structural Folder Organization (Spring Boot)
+To keep the "Safety" logic separate from standard CRUD, structure your backend package like this:
+Plaintext
+
+
+
+com.myfitbuddy.backend
+├── config              # Security, CORS, Swagger Config
+├── core                # Shared logic (Exceptions, Base Entities)
+├── modules
+│   ├── auth            # Login, Registration, JWT
+│   ├── user            # User Profile, Biometrics
+│   ├── workout         # Plans, Logs, Exercises
+│   └── coaching        # Chatbot logic
+└── intelligence        # THE AI BRAIN
+    ├── client          # Spring AI Wrapper
+    ├── prompts         # Prompt Templates (stubs)
+    ├── rag             # Vector Store Services
+    └── safety          # THE RULE ENGINE
+        ├── rules       # Individual Logic (e.g., BackInjuryRule.java)
+        └── validator   # Service that runs the rules
+4. Why this structure works for YOU?
+	1	Isolation: The intelligence package is isolated. If AI fails, the rest of the app (logging, history) still works.
+	2	Strictness: The RuleEngine sits explicitly between the AI and the Database. Bad data literally cannot be saved.
+	3	Speed: You are writing standard Java 21 code for 90% of the app. You don't need to learn Python/LangChain.
+Next Step:
+Would you like the Database Schema (SQL) or the Java Class Structure for the Safety Rule Engine?

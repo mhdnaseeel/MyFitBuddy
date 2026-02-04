@@ -1,0 +1,126 @@
+Product Requirements Document (PRD): MyFitBuddy
+Project Name
+MyFitBuddy
+Version
+1.0 (Master)
+Status
+Approved for Development
+Platform
+Web Application (Responsive PWA)
+Tech Stack
+Java Spring Boot / Angular / PostgreSQL
+
+
+
+1. Executive Summary
+MyFitBuddy is an AI-powered fitness platform designed to democratize personal training. Unlike static PDF programs, MyFitBuddy leverages Generative AI and a deterministic rules engine to create hyper-personalized workout routines that adapt to the user's progress, injuries, and schedule. The goal is to provide a "coach in your pocket" experience that bridges the gap between generic apps and expensive human trainers.
+2. Problem Statement
+	•	Generic Programming: Most apps offer cookie-cutter plans that do not account for individual injury history or equipment limitations.
+	•	Lack of Adaptation: Users hit plateaus because static plans do not evolve as the user gets stronger or experiences fatigue.
+	•	Safety Risks: Pure AI solutions can hallucinate unsafe exercises for beginners.
+3. User Personas
+	•	The Beginner ("New Year Ned"): High motivation but low knowledge. Needs video guidance, simple terms, and a plan that isn't intimidating.
+	•	The Busy Professional ("Corporate Clara"): Has limited time (30 mins) and equipment (home dumbbells). Needs high-efficiency workouts.
+	•	The Optimizer ("Gym Bro Greg"): Wants data analysis, progressive overload tracking, and 1RM estimations.
+
+
+
+4. Functional Requirements
+4.1 User Onboarding (The Data Intake)
+The system must capture critical data points to inform the AI engine.
+	•	Biometrics: Age, gender, height, current weight.
+	•	Goals: Hypertrophy (Muscle), Strength, Fat Loss, or General Health.
+	•	Experience Level: Sedentary, Beginner, Intermediate, Advanced.
+	•	Equipment Profile:
+	◦	Gym Access: Full commercial gym.
+	◦	Home Setup: Dumbbells, bands, pull-up bar.
+	◦	No Equipment: Bodyweight only.
+	•	Constraints: Specific injuries (e.g., "Lower back pain") and days available per week.
+4.2 The AI Workout Engine (Core Feature)
+	•	Plan Generation: Upon onboarding, the system generates a 4–12 week training block.
+	◦	Output: Split (e.g., Upper/Lower), Exercises, Sets, Reps, RPE (Rate of Perceived Exertion), and Rest intervals.
+	•	Safety Layer (The Guardrail):
+	◦	Requirement: All AI outputs must pass through a logic-based "Safety Filter" before being shown to the user.
+	◦	Logic Example: IF user_level = "Beginner" AND exercise = "Behind-the-neck Press" THEN REPLACE WITH "Dumbbell Shoulder Press".
+4.3 Adaptive Logic (The "Smart" Layer)
+The plan must not be static. It must evolve based on user logs.
+	•	Progressive Overload: If a user completes all reps easily (RPE < 6), the next session's load increases by 2.5–5%.
+	•	Fatigue Management: If a user rates energy as "Low" during check-in, volume (sets) is reduced by 20% for that session.
+	•	The "Bridge Week" Protocol: If a user misses >3 consecutive workouts, the system auto-switches to a "Re-introduction Week" (lower intensity) rather than forcing the original schedule.
+4.4 Workout Execution Interface
+	•	Active Mode: A "Start Workout" view optimized for mobile.
+	•	Media: Embedded video demos for every exercise.
+	•	Logging: Input fields for Weight (kg/lbs) and Reps.
+	•	Timer: Auto-start rest timer between sets.
+4.5 AI Chat Coach
+	•	Contextual Awareness: The chat widget must have access to the current workout data.
+	◦	User: "This hurts my wrist."
+	◦	AI: "Understood. Based on your profile, swap the Barbell Curl for Hammer Curls. Updating your plan now."
+	•	Scope Limits: The AI must refuse to give medical diagnoses or prescription advice.
+
+
+
+5. Technical Architecture
+5.1 Technology Stack
+	•	Frontend: Angular (v16+) with Tailwind CSS. Must be built as a PWA (Progressive Web App) for offline capability.
+	•	Backend: Java Spring Boot (REST API architecture).
+	•	Database: PostgreSQL (Relational data for Users, Plans, Logs).
+	•	AI Integration: LLM API (e.g., OpenAI/Anthropic) integrated via Spring AI or LangChain for Java.
+5.2 Data Model (Key Entities)
+	•	User: Profile, Auth credentials, Subscriptions.
+	•	FitnessProfile: Biometrics, Injuries, Equipment List.
+	•	WorkoutPlan: The generated schedule (One-to-Many with User).
+	•	WorkoutSession: A specific day's scheduled exercises.
+	•	ExerciseLog: Actual performance data (Weight/Reps) linked to a Session.
+5.3 Security & Compliance
+	•	Data Privacy: All health data (injuries, biometrics) must be encrypted at rest.
+	•	Disclaimer: Mandatory "Not Medical Advice" waiver during signup.
+	•	Auth: Secure JWT-based authentication (Spring Security).
+
+
+
+6. Non-Functional Requirements
+	•	Performance: Plan generation must complete in under 10 seconds.
+	•	Scalability: Database design must support high concurrent writes (logging sets) during peak hours (6 AM - 8 AM, 5 PM - 8 PM).
+	•	Availability: 99.9% Uptime.
+
+
+
+7. Roadmap & Phases
+Phase 1: MVP (Minimum Viable Product)
+	•	User Auth & Onboarding.
+	•	AI Plan Generation (Text-based).
+	•	Basic Workout Logging.
+	•	Manual Feedback Loop (User rates workout difficulty).
+Phase 2: Enhanced Intelligence
+	•	"Bridge Week" automation.
+	•	AI Chat Coach integration.
+	•	Visual Progress Charts (Volume/Strength graphs).
+Phase 3: Future Scale
+	•	Wearable Integration (Apple Health/Google Fit).
+	•	Computer Vision (Form check via camera).
+	•	Trainer Dashboard (For hybrid coaching).
+
+
+
+8. Risks & Mitigation
+Risk
+Impact
+Mitigation Strategy
+AI Hallucination
+High (User Injury)
+Implement a "Safety Rules Engine" that validates all AI exercises against a whitelist of safe movements.
+User Drop-off
+Medium (Churn)
+Implement push notifications and "Bridge Weeks" to re-engage lapsed users without shame.
+Liability
+High (Legal)
+Strict Terms of Service; AI is labeled clearly as a "Coach Assistant," not a doctor.
+
+
+
+9. Success Metrics
+	•	Plan Adherence: % of scheduled workouts completed.
+	•	Retention: % of users active after 30 days.
+	•	Load Progression: Average % increase in weight lifted per user per month.
+

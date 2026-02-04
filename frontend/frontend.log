@@ -1,125 +1,281 @@
 
 > frontend@0.0.0 start
-> ng serve --host 0.0.0.0
+> ng serve --host 0.0.0.0 --port 4500 --disable-host-check
 
-
-Warning: This is a simple server for use in testing or debugging Angular applications
-locally. It hasn't been reviewed for security issues.
-
-Binding this server to an open connection can result in compromising your application or
-computer. Using a different host than the one passed to the "--host" flag might result in
-websocket connection issues. You might need to use "--disable-host-check" if that's the
-case.
-    
+Warning: Running a server with --disable-host-check is a security risk. See https://medium.com/webpack/webpack-dev-server-middleware-security-issues-1489d950874a for more information.
+The "disableHostCheck" option will not be used because it is not supported by the "@angular-devkit/build-angular:application" builder.
 - Building...
 
-Application bundle generation failed. [1.118 seconds]
+Application bundle generation failed. [1.078 seconds]
 
-✘ [ERROR] TS2552: Cannot find name 'WorkoutService'. Did you mean 'MockWorkoutService'? [plugin angular-compiler]
+✘ [ERROR] NG2: Type '{ domain: string[]; }' is not assignable to type 'string | Color'.
+  Type '{ domain: string[]; }' is missing the following properties from type 'Color': name, selectable, group [plugin angular-compiler]
 
-    src/app/modules/workout/services/mock-workout.service.ts:9:40:
-      9 │ export class MockWorkoutService extends WorkoutService {
-        ╵                                         ~~~~~~~~~~~~~~
-
-
-✘ [ERROR] TS4112: This member cannot have an 'override' modifier because its containing class 'MockWorkoutService' does not extend another class. [plugin angular-compiler]
-
-    src/app/modules/workout/services/mock-workout.service.ts:18:13:
-      18 │     override startSession(planId: number): Observable<WorkoutSessi...
-         ╵              ~~~~~~~~~~~~
+    src/app/modules/dashboard/dashboard.component.ts:54:19:
+      54 │                   [scheme]="colorScheme"
+         ╵                    ~~~~~~
 
 
-✘ [ERROR] TS2551: Property 'activeSession' does not exist on type 'MockWorkoutService'. Did you mean 'getActiveSession'? [plugin angular-compiler]
+✘ [ERROR] NG2: Type '{ domain: string[]; }' is not assignable to type 'string | Color'. [plugin angular-compiler]
 
-    src/app/modules/workout/services/mock-workout.service.ts:37:26:
-      37 │             tap(s => this.activeSession.set(s))
-         ╵                           ~~~~~~~~~~~~~
-
-  'getActiveSession' is declared here.
-
-    src/app/modules/workout/services/mock-workout.service.ts:41:13:
-      41 │     override getActiveSession(): Observable<WorkoutSession> {
-         ╵              ~~~~~~~~~~~~~~~~
+    src/app/modules/dashboard/dashboard.component.ts:72:19:
+      72 │                   [scheme]="colorScheme"
+         ╵                    ~~~~~~
 
 
-✘ [ERROR] TS4112: This member cannot have an 'override' modifier because its containing class 'MockWorkoutService' does not extend another class. [plugin angular-compiler]
+✘ [ERROR] TS4114: This member must have an 'override' modifier because it overrides a member in the base class 'WorkoutService'. [plugin angular-compiler]
 
-    src/app/modules/workout/services/mock-workout.service.ts:41:13:
-      41 │     override getActiveSession(): Observable<WorkoutSession> {
-         ╵              ~~~~~~~~~~~~~~~~
-
-
-✘ [ERROR] TS2551: Property 'activeSession' does not exist on type 'MockWorkoutService'. Did you mean 'getActiveSession'? [plugin angular-compiler]
-
-    src/app/modules/workout/services/mock-workout.service.ts:42:18:
-      42 │         if (!this.activeSession()) return of(null as any).pipe(del...
-         ╵                   ~~~~~~~~~~~~~
-
-  'getActiveSession' is declared here.
-
-    src/app/modules/workout/services/mock-workout.service.ts:41:13:
-      41 │     override getActiveSession(): Observable<WorkoutSession> {
-         ╵              ~~~~~~~~~~~~~~~~
+    src/app/modules/workout/services/mock-workout.service.ts:61:4:
+      61 │     getWeeklyStats(): Observable<any[]> {
+         ╵     ~~~~~~~~~~~~~~
 
 
-✘ [ERROR] TS2551: Property 'activeSession' does not exist on type 'MockWorkoutService'. Did you mean 'getActiveSession'? [plugin angular-compiler]
+✘ [ERROR] TS4114: This member must have an 'override' modifier because it overrides a member in the base class 'WorkoutService'. [plugin angular-compiler]
 
-    src/app/modules/workout/services/mock-workout.service.ts:43:23:
-      43 │         return of(this.activeSession()!).pipe(delay(200));
-         ╵                        ~~~~~~~~~~~~~
-
-  'getActiveSession' is declared here.
-
-    src/app/modules/workout/services/mock-workout.service.ts:41:13:
-      41 │     override getActiveSession(): Observable<WorkoutSession> {
-         ╵              ~~~~~~~~~~~~~~~~
-
-
-✘ [ERROR] TS4112: This member cannot have an 'override' modifier because its containing class 'MockWorkoutService' does not extend another class. [plugin angular-compiler]
-
-    src/app/modules/workout/services/mock-workout.service.ts:46:13:
-      46 │     override logSet(sessionId: number, data: any): Observable<SetL...
-         ╵              ~~~~~~
-
-
-✘ [ERROR] TS2551: Property 'activeSession' does not exist on type 'MockWorkoutService'. Did you mean 'getActiveSession'? [plugin angular-compiler]
-
-    src/app/modules/workout/services/mock-workout.service.ts:54:13:
-      54 │         this.activeSession.update(s => s ? ({ ...s, sets: [...s.se...
-         ╵              ~~~~~~~~~~~~~
-
-  'getActiveSession' is declared here.
-
-    src/app/modules/workout/services/mock-workout.service.ts:41:13:
-      41 │     override getActiveSession(): Observable<WorkoutSession> {
-         ╵              ~~~~~~~~~~~~~~~~
-
-
-✘ [ERROR] TS7006: Parameter 's' implicitly has an 'any' type. [plugin angular-compiler]
-
-    src/app/modules/workout/services/mock-workout.service.ts:54:34:
-      54 │         this.activeSession.update(s => s ? ({ ...s, sets: [...s.se...
-         ╵                                   ^
-
-
-✘ [ERROR] TS4112: This member cannot have an 'override' modifier because its containing class 'MockWorkoutService' does not extend another class. [plugin angular-compiler]
-
-    src/app/modules/workout/services/mock-workout.service.ts:58:13:
-      58 │     override finishSession(sessionId: number): Observable<WorkoutS...
-         ╵              ~~~~~~~~~~~~~
-
-
-✘ [ERROR] TS2551: Property 'activeSession' does not exist on type 'MockWorkoutService'. Did you mean 'getActiveSession'? [plugin angular-compiler]
-
-    src/app/modules/workout/services/mock-workout.service.ts:59:13:
-      59 │         this.activeSession.set(null);
-         ╵              ~~~~~~~~~~~~~
-
-  'getActiveSession' is declared here.
-
-    src/app/modules/workout/services/mock-workout.service.ts:41:13:
-      41 │     override getActiveSession(): Observable<WorkoutSession> {
-         ╵              ~~~~~~~~~~~~~~~~
+    src/app/modules/workout/services/mock-workout.service.ts:74:4:
+      74 │     getVolumeStats(): Observable<any[]> {
+         ╵     ~~~~~~~~~~~~~~
 
 
 Watch mode enabled. Watching for file changes...
+- Changes detected. Rebuilding...
+
+Application bundle generation failed. [0.246 seconds]
+
+✘ [ERROR] NG2: Type '{ domain: string[]; }' is not assignable to type 'string | Color'.
+  Type '{ domain: string[]; }' is missing the following properties from type 'Color': name, selectable, group [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:54:19:
+      54 │                   [scheme]="colorScheme"
+         ╵                    ~~~~~~
+
+
+✘ [ERROR] NG2: Type '{ domain: string[]; }' is not assignable to type 'string | Color'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:72:19:
+      72 │                   [scheme]="colorScheme"
+         ╵                    ~~~~~~
+
+
+- Changes detected. Rebuilding...
+
+Application bundle generation failed. [0.203 seconds]
+
+✘ [ERROR] NG9: Property 'startWorkout' does not exist on type 'DashboardComponent'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:39:59:
+      39 │ ...       <app-button variant="secondary" (onClick)="startWorkout()">
+         ╵                                                      ~~~~~~~~~~~~
+
+
+✘ [ERROR] NG9: Property 'colorScheme' does not exist on type 'DashboardComponent'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:54:28:
+      54 │                   [scheme]="colorScheme"
+         ╵                             ~~~~~~~~~~~
+
+
+✘ [ERROR] NG9: Property 'colorScheme' does not exist on type 'DashboardComponent'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:72:28:
+      72 │                   [scheme]="colorScheme"
+         ╵                             ~~~~~~~~~~~
+
+
+✘ [ERROR] TS1068: Unexpected token. A constructor, method, accessor, or property was expected. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:99:0:
+      99 │ import { Color, ScaleType } from '@swimlane/ngx-charts';
+         ╵ ~~~~~~
+
+
+✘ [ERROR] TS2693: 'Color' only refers to a type, but is being used as a value here. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:104:13:
+      104 │ colorScheme: Color = {
+          ╵              ~~~~~
+
+
+✘ [ERROR] TS2304: Cannot find name 'startWorkout'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:111:0:
+      111 │ startWorkout() {
+          ╵ ~~~~~~~~~~~~
+
+
+✘ [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:111:15:
+      111 │ startWorkout() {
+          ╵                ^
+
+
+✘ [ERROR] TS2532: Object is possibly 'undefined'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:112:2:
+      112 │   this.workoutService.startSession(1).subscribe({
+          ╵   ~~~~
+
+
+✘ [ERROR] TS2532: Object is possibly 'undefined'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:113:16:
+      113 │     next: () => this.router.navigate(['/active']),
+          ╵                 ~~~~
+
+
+✘ [ERROR] TS7006: Parameter 'err' implicitly has an 'any' type. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:114:12:
+      114 │     error: (err) => {
+          ╵             ~~~
+
+
+✘ [ERROR] TS2532: Object is possibly 'undefined'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:116:6:
+      116 │       this.router.navigate(['/active']); // Fallback for mock
+          ╵       ~~~~
+
+
+✘ [ERROR] TS1128: Declaration or statement expected. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:120:0:
+      120 │ }
+          ╵ ^
+
+
+- Changes detected. Rebuilding...
+
+Application bundle generation failed. [0.100 seconds]
+
+✘ [ERROR] TS2300: Duplicate identifier 'Color'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:7:26:
+      7 │ import { NgxChartsModule, Color, ScaleType } from '@swimlane/ngx-ch...
+        ╵                           ~~~~~
+
+
+✘ [ERROR] TS2300: Duplicate identifier 'ScaleType'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:7:33:
+      7 │ ...t { NgxChartsModule, Color, ScaleType } from '@swimlane/ngx-char...
+        ╵                                ~~~~~~~~~
+
+
+✘ [ERROR] NG9: Property 'startWorkout' does not exist on type 'DashboardComponent'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:39:59:
+      39 │ ...       <app-button variant="secondary" (onClick)="startWorkout()">
+         ╵                                                      ~~~~~~~~~~~~
+
+
+✘ [ERROR] NG9: Property 'colorScheme' does not exist on type 'DashboardComponent'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:54:28:
+      54 │                   [scheme]="colorScheme"
+         ╵                             ~~~~~~~~~~~
+
+
+✘ [ERROR] NG9: Property 'colorScheme' does not exist on type 'DashboardComponent'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:72:28:
+      72 │                   [scheme]="colorScheme"
+         ╵                             ~~~~~~~~~~~
+
+
+✘ [ERROR] TS1068: Unexpected token. A constructor, method, accessor, or property was expected. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:99:0:
+      99 │ import { Color, ScaleType } from '@swimlane/ngx-charts';
+         ╵ ~~~~~~
+
+
+✘ [ERROR] TS2300: Duplicate identifier 'Color'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:99:9:
+      99 │ import { Color, ScaleType } from '@swimlane/ngx-charts';
+         ╵          ~~~~~
+
+
+✘ [ERROR] TS2300: Duplicate identifier 'ScaleType'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:99:16:
+      99 │ import { Color, ScaleType } from '@swimlane/ngx-charts';
+         ╵                 ~~~~~~~~~
+
+
+✘ [ERROR] TS2693: 'Color' only refers to a type, but is being used as a value here. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:104:13:
+      104 │ colorScheme: Color = {
+          ╵              ~~~~~
+
+
+✘ [ERROR] TS2304: Cannot find name 'startWorkout'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:111:0:
+      111 │ startWorkout() {
+          ╵ ~~~~~~~~~~~~
+
+
+✘ [ERROR] TS1005: ';' expected. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:111:15:
+      111 │ startWorkout() {
+          ╵                ^
+
+
+✘ [ERROR] TS2532: Object is possibly 'undefined'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:112:2:
+      112 │   this.workoutService.startSession(1).subscribe({
+          ╵   ~~~~
+
+
+✘ [ERROR] TS2532: Object is possibly 'undefined'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:113:16:
+      113 │     next: () => this.router.navigate(['/active']),
+          ╵                 ~~~~
+
+
+✘ [ERROR] TS7006: Parameter 'err' implicitly has an 'any' type. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:114:12:
+      114 │     error: (err) => {
+          ╵             ~~~
+
+
+✘ [ERROR] TS2532: Object is possibly 'undefined'. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:116:6:
+      116 │       this.router.navigate(['/active']); // Fallback for mock
+          ╵       ~~~~
+
+
+✘ [ERROR] TS1128: Declaration or statement expected. [plugin angular-compiler]
+
+    src/app/modules/dashboard/dashboard.component.ts:120:0:
+      120 │ }
+          ╵ ^
+
+
+- Changes detected. Rebuilding...
+
+Initial chunk files | Names                    |  Raw size
+polyfills.js        | polyfills                |  88.09 kB | 
+main.js             | main                     |  39.61 kB | 
+styles.css          | styles                   |  18.78 kB | 
+chunk-GXPDQOVP.js   | -                        |  12.79 kB | 
+
+                    | Initial total            | 159.27 kB
+
+Lazy chunk files    | Names                    |  Raw size
+chunk-ZJHCBZWU.js   | active-workout-component |  13.49 kB | 
+
+Application bundle generation complete. [0.252 seconds]
+
+  ➜  Local:   http://localhost:4500/
+  ➜  Network: http://192.168.1.8:4500/
+  ➜  press h + enter to show help

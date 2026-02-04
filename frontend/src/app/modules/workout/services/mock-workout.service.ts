@@ -1,11 +1,9 @@
 import { Injectable, signal } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
-import { WorkoutSession, SetLog } from './workout.service';
+import { WorkoutService, WorkoutSession, SetLog } from './workout.service';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class MockWorkoutService extends WorkoutService {
     // Override signal if necessary, or just use the inherited one.
     // However, inherited one is initialized.
@@ -58,5 +56,33 @@ export class MockWorkoutService extends WorkoutService {
     override finishSession(sessionId: number): Observable<WorkoutSession> {
         this.activeSession.set(null);
         return of({} as any).pipe(delay(200));
+    }
+
+    override getWeeklyStats(): Observable<any[]> {
+        const data = [
+            { name: 'Mon', value: 1 },
+            { name: 'Tue', value: 0 },
+            { name: 'Wed', value: 1 },
+            { name: 'Thu', value: 0 },
+            { name: 'Fri', value: 1 },
+            { name: 'Sat', value: 1 },
+            { name: 'Sun', value: 0 }
+        ];
+        return of(data).pipe(delay(500));
+    }
+
+    override getVolumeStats(): Observable<any[]> {
+        const data = [
+            {
+                name: 'Volume',
+                series: [
+                    { name: 'Week 1', value: 2400 },
+                    { name: 'Week 2', value: 3600 },
+                    { name: 'Week 3', value: 4100 },
+                    { name: 'Week 4', value: 4500 }
+                ]
+            }
+        ];
+        return of(data).pipe(delay(500));
     }
 }

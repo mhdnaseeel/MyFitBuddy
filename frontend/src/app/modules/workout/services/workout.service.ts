@@ -64,4 +64,13 @@ export class WorkoutService {
             tap(() => this.activeSession.set(null))
         );
     }
+
+    // Phase 2: Analytics Placeholders
+    getWeeklyStats(): Observable<any[]> {
+        return this.http.get<any[]>(`${this.apiUrl}/stats/weekly`);
+    }
+
+    getVolumeStats(): Observable<any[]> {
+        return this.http.get<any[]>(`${this.apiUrl}/stats/volume`);
+    }
 }
